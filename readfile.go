@@ -34,7 +34,7 @@ func jrnlToBlog(jrnl string) {
 
 	dateTime := validDateTime.FindStringSubmatch(jrnl)[1]
 	date := strings.Split(dateTime, " ")[0]
-	time := strings.Split(dateTime, " ")[1]
+	// time := strings.Split(dateTime, " ")[1]
 	// fmt.Println(date, time)
 
 	title := strings.Split(jrnl, "\n")[0]
@@ -50,7 +50,7 @@ func jrnlToBlog(jrnl string) {
 
 
 	// fileHandle, _ := os.OpenFile("./out.txt", os.O_APPEND, 0666)
-	fileHandle, err := os.OpenFile("./"+date+"-"+time+".txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	fileHandle, err := os.OpenFile("./"+date+"-"+t+".md", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 	    log.Fatal(err)
 	}
