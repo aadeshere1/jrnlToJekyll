@@ -22,11 +22,35 @@ func main() {
 	check(err)
 	// fmt.Println(string(dat))
 	strJournal := string(dat)
-	journals := strings.Split(strJournal, "\n\n")
-	for _, jrnl := range journals {
-		jrnlToBlog(jrnl)
-		fmt.Println("=========================")
+	validDateTime := regexp.MustCompile(`\[([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2})\]`)
+	dateTime := validDateTime.FindAllStringSubmatch(strJournal, -1)
+
+	// for i := 0; i < 8; i++ {
+	// 	// fmt.Println(i)
+	// 	fmt.Println(dateTime[i][1])
+	// 	fmt.Println("=======")
+	// }
+
+	jrnls := validDateTime.Split(strJournal, -1)
+
+	for i, j := range jrnls {
+		fmt.Println(dateTime[i][1])
+		fmt.Println(j)
 	}
+
+	// for i, j := range jrnls {
+	// 	fmt.Println(dateTime[j])
+	// 	fmt.Println(j)
+	// 	fmt.Println(i)
+	// 	fmt.Println("=========================")
+	// }
+
+
+	// journals := strings.Split(strJournal, "\n\n")
+	// for _, jrnl := range journals {
+	// 	jrnlToBlog(jrnl)
+	// 	fmt.Println("=========================")
+	// }
 }
 
 func jrnlToBlog(jrnl string) {
